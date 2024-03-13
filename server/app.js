@@ -1,6 +1,7 @@
 import dotenv from 'dotenv';
 import express from 'express';
 import connectDB from './config/dbConfig.js';
+import bookRoutes from './routes/bookRoutes.js';
 
 const app = express();
 
@@ -13,6 +14,8 @@ app.get('/', (req, res) => {
   console.log(req);
   return res.status(234).send('Welcome to my bookstore');
 });
+
+app.use('/api', bookRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
