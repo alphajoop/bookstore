@@ -1,0 +1,45 @@
+{
+  "name": "bookstore",
+  "version": "1.0.0",
+  "description": "bookstore api",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "lint": "eslint --fix . --ext js --report-unused-disable-directives --max-warnings 0",
+    "format": "prettier --write .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alphajoop/bookstore.git"
+  },
+  "keywords": [
+    "mern",
+    "bookstore",
+    "nodejs",
+    "api",
+    "mongodb"
+  ],
+  "author": "Alpha DIOP",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alphajoop/bookstore/issues"
+  },
+  "homepage": "https://github.com/alphajoop/bookstore#readme",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.18.3",
+    "mongoose": "^8.2.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.56.0",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-n": "^16.6.2",
+    "eslint-plugin-promise": "^6.1.1",
+    "nodemon": "^3.1.0",
+    "prettier": "^3.2.5"
+  }
+}
