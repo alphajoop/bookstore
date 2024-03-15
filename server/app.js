@@ -11,14 +11,15 @@ const app = express();
 
 app.use(express.json());
 app.use(loggerMiddleware);
-//app.use(cors());
-app.use(
+app.use(cors());
+/*app.use(
   cors({
     origin: process.env.ALLOWED_ORIGIN,
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type'],
   })
 );
+*/
 
 // Configuration de EJS comme moteur de modèle
 const __filename = fileURLToPath(import.meta.url);
