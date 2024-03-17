@@ -1,9 +1,9 @@
 import Book from '../models/bookModel.js';
 
 export async function createBook(req, res) {
-  const { title, author, publishYear } = req.body;
+  const { title, author, publishYear, description } = req.body;
 
-  if (!title || !author || !publishYear) {
+  if (!title || !author || !publishYear || !description) {
     return res.status(400).json({ message: 'All fields are required' });
   }
 
@@ -12,6 +12,7 @@ export async function createBook(req, res) {
       title,
       author,
       publishYear,
+      description,
     });
 
     res.status(201).json({ message: 'Book created successfully', book: newBook });
@@ -49,12 +50,12 @@ export async function getBookById(req, res) {
 
 export async function updateBook(req, res) {
   const bookId = req.params.id;
-  const { title, author, publishYear } = req.body;
+  const { title, author, publishYear, description } = req.body;
 
   try {
     const updatedBook = await Book.findByIdAndUpdate(
       bookId,
-      { title, author, publishYear },
+      { title, author, publishYear, description },
       { new: true }
     );
 

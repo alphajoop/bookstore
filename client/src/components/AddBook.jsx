@@ -10,6 +10,7 @@ function AddBook() {
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
   const [publishYear, setPublishYear] = useState('');
+  const [description, setDescription] = useState('');
   const {
     loading,
     setLoading,
@@ -23,11 +24,12 @@ function AddBook() {
     event.preventDefault();
     setLoading(true);
     try {
-      await bookApi.addBook({ title, author, publishYear });
+      await bookApi.addBook({ title, author, publishYear, description });
       setSuccessMessage('Book added successfully');
       setTitle('');
       setAuthor('');
       setPublishYear('');
+      setDescription('');
       history('/');
     } catch (error) {
       console.error('Error adding book:', error);
@@ -46,7 +48,7 @@ function AddBook() {
   };
 
   return (
-    <div className="my-0 mx-auto max-w-full p-10">
+    <div className="my-0 mx-auto max-w-full p-4 md:p-10">
       {loading ? (
         <Spinner />
       ) : error ? (
@@ -86,19 +88,21 @@ function AddBook() {
                       onChange={(e) => setPublishYear(e.target.value)}
                       required
                     />
-                    {/* 
-                      <textarea
-                      className="w-full bg-white border border-gray-300 rounded-md px-3 py-2 mb-4 focus:outline-none focus:ring focus:ring-blue-400 dark:focus:ring-gray-500"
+                    <textarea
+                      type="text"
+                      className="w-full border border-gray-300 rounded-md px-3 py-2 mb-4 focus:outline-none focus:ring-1 focus:border-transparent focus:ring-gray-400"
                       placeholder="Description"
+                      value={description}
+                      onChange={(e) => setDescription(e.target.value)}
                       rows="4"
-                      />
-                    */}
+                      required
+                    />
                     <button
                       type="submit"
                       disabled={loading}
                       className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-lg"
                     >
-                      Save
+                      Save Book
                     </button>
                   </form>
                 </div>

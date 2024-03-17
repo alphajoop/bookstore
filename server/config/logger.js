@@ -41,10 +41,7 @@ const consoleFormat = printf(({ level, message, timestamp, ...metadata }) => {
 // Create a new logger instance with specified configuration
 const logger = winston.createLogger({
   level: 'info',
-  format: combine(
-    timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
-    logFormat
-  ),
+  format: combine(timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }), logFormat),
   transports: [
     // Transport to write logs to a daily rotating file
     new DailyRotateFile({
@@ -56,10 +53,7 @@ const logger = winston.createLogger({
     }),
     // Transport to log messages to the console (useful during development)
     new winston.transports.Console({
-      format: combine(
-        colorize(),
-        consoleFormat
-      ),
+      format: combine(colorize(), consoleFormat),
       level: process.env.NODE_ENV === 'prod' ? 'info' : 'debug',
     }),
     // Transport to handle errors

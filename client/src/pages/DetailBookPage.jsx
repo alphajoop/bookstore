@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import bookApi from '../api/bookApi';
 import DetailIcon from '../assets/icons/DetailIcon';
 import { EditIcon } from '../assets/icons/EditIcon';
@@ -39,18 +39,18 @@ function DetailBookPage() {
   }, [id, setError, setLoading]);
 
   return (
-    <div className="my-0 mx-auto max-w-full p-10">
+    <div className="my-0 mx-auto max-w-full p-4 md:p-10">
       {loading ? (
         <Spinner />
       ) : error ? (
         <div>Error: {error}</div>
       ) : (
-        <div className="w-full overflow-auto rounded border">
+        <div className="w-full overflow-auto rounded border py-4">
           <div className="flex justify-between items-center p-6">
             <BackButton />
             <h1 className="text-2xl font-bold">Book Details</h1>
           </div>
-          <div className="overflow-x-auto p-4">
+          <div className="overflow-x-auto">
             <div className="flex justify-center items-center">
               <div className="max-w-3xl w-full">
                 {book && (
@@ -61,20 +61,24 @@ function DetailBookPage() {
                       Publish Year: {book.publishYear}
                     </p>
                     <p className="text-sm text-gray-500 mb-4">
-                      Description: Lorem ipsum dolor sit amet, consectetur
-                      adipiscing elit. Nulla convallis libero at nunc ultricies,
-                      nec ultricies nunc dignissim.
+                      {book.description}
                     </p>
                     <div className="flex justify-end gap-4">
-                      <button className="flex items-center text-gray-500">
+                      <Link className="items-center text-gray-500 hidden">
                         <DetailIcon />
-                      </button>
-                      <button className="flex items-center text-gray-500">
+                      </Link>
+                      <Link
+                        to={`/book/edit/${book._id}`}
+                        className="flex items-center text-gray-500"
+                      >
                         <EditIcon />
-                      </button>
-                      <button className="flex items-center text-gray-500">
+                      </Link>
+                      <Link
+                        to={`/book/delete/${book._id}`}
+                        className="flex items-center text-gray-500"
+                      >
                         <TrashIcon />
-                      </button>
+                      </Link>
                     </div>
                   </div>
                 )}

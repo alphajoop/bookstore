@@ -13,7 +13,9 @@ const loggerMiddleware = (req, res, next) => {
     requestType = 'OTHER';
   }
 
-  logger.info(`${requestType} ${req.method} ${req.url} ${req.ip} Content-Type: ${JSON.stringify(req.headers['content-type'] || 'Not specified')}`);
+  logger.info(
+    `${requestType} ${req.method} ${req.url} ${req.ip} Content-Type: ${JSON.stringify(req.headers['content-type'] || 'Not specified')}`
+  );
 
   // Gestion des erreurs dans le middleware
   try {

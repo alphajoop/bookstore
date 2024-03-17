@@ -7,7 +7,12 @@ import Spinner from './Spinner';
 
 function EditBook() {
   const { id } = useParams();
-  const [book, setBook] = useState({ title: '', author: '', publishYear: '' });
+  const [book, setBook] = useState({
+    title: '',
+    author: '',
+    publishYear: '',
+    description: '',
+  });
   const {
     loading,
     setLoading,
@@ -69,7 +74,7 @@ function EditBook() {
   };
 
   return (
-    <div className="my-0 mx-auto max-w-full p-10">
+    <div className="my-0 mx-auto max-w-full p-4 md:p-10">
       {loading ? (
         <Spinner />
       ) : error ? (
@@ -111,13 +116,15 @@ function EditBook() {
                       value={book.publishYear}
                       onChange={handleInputChange}
                     />
-                    {/* 
-                      <textarea
-                      className="w-full bg-white border border-gray-300 rounded-md px-3 py-2 mb-4 focus:outline-none focus:ring focus:ring-blue-400"
+                    <textarea
+                      type="text"
+                      name="description"
+                      className="w-full border-gray-300 rounded-md px-3 py-2 mb-4 focus:outline-none focus:ring-1 focus:border-transparent focus:ring-gray-400"
                       placeholder="Description"
+                      value={book.description}
+                      onChange={handleInputChange}
                       rows="4"
-                      />
-                    */}
+                    />
                     <button
                       type="submit"
                       disabled={loading}

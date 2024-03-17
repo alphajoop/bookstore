@@ -42,7 +42,7 @@ function BookList() {
   }, [setError, setLoading]);
 
   return (
-    <div className="my-0 mx-auto max-w-full p-10">
+    <div className="my-0 mx-auto max-w-full p-4 md:p-10">
       {loading ? (
         <Spinner />
       ) : error ? (
@@ -74,7 +74,7 @@ function BookList() {
           <div className="overflow-x-auto">
             <table className="min-w-full">
               <thead className="border-b">
-                <tr className="text-sm font-medium text-gray-500">
+                <tr className="text-sm font-medium text-gray-500 whitespace-nowrap">
                   <th className="px-4 py-3 text-left">No</th>
                   <th className="px-4 py-3 text-left">Title</th>
                   <th className="px-4 py-3 text-left">Author</th>
@@ -84,7 +84,10 @@ function BookList() {
               </thead>
               <tbody className="divide-y">
                 {books.map((book, index) => (
-                  <tr key={book._id} className="text-sm text-gray-500">
+                  <tr
+                    key={book._id}
+                    className="text-sm text-gray-500 whitespace-nowrap"
+                  >
                     <td className="px-4 py-3">{index + 1}</td>
                     <td className="px-4 py-3">{book.title}</td>
                     <td className="px-4 py-3">{book.author}</td>
